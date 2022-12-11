@@ -1,43 +1,76 @@
 ﻿#pragma once
+#include"ScreenStyle.h"
 /*
 開発開始　12月６日
 開発者　藤本涼
-opensiv用の画面の縮小拡大を自動的に行うもの
+OpenSiv3D用の画面の縮小拡大を自動的に行うもの
 */
 
 
 
-class screen_resizer {
+class Screen_Resizer {
 private:
-	int x=0,y=0;
-	Vec2 pos;
-	Vec2 point;
-	Vec2 Op;
-	Vec2 scalling;
-	double scall;
+	Vec2 Virtual_Size;
+	Vec2 Offset_Pos = {};
+	Vec2 Scalling = {};
+	double Scall = 0;
+	uint8 Style=1;
 public:
-	screen_resizer(double x,double y ) {
-		pos.x = x;
-		pos.y = y;
-
-	}
+	Screen_Resizer(const Vec2& Virtual_Size) :Virtual_Size(Virtual_Size) {}
 	/*仮想スクリーンの大きさを指定する*/
 
+	void Resize_Update() {
+		Scalling = Scene::Size() / Virtual_Size;
+		//仮想ウィンドウと実ウィンドウの大きさの比率を求める
+		Scall = Scalling.x < Scalling.y ? Scalling.x : Scalling.y;
+		//x,yのうち、より縮小しなければ画面に入らないほうの縮小率を求める
 
-	void resizer() {
-		scalling.x = Scene::Size().x / pos.x;
-		scalling.y = Scene::Size().y / pos.y;
-		scall = scalling.x < scalling.y ? scalling.x : scalling.y;
+		if (Style==0) {
+			
+		}
+		else if (Style=1) {
+			Offset_Pos = (Scene::Size() - Virtual_Size * Scall) * 0.5;
+		}
+		else {
 
-		Op.x = (Scene::Size().x - 1200.0 * scall) * 0.5;
-		Op.y = (Scene::Size().y - pos.y * scall) * 0.5;
+		}
+		//pos*scallは実ウィンドウ内での仮想ウィンドウの大きさ
+	}
+	void SetStyle(ScreenStyle Style) {
+		this->Style = (uint8)Style;
+	}
+	/// @brief 実ウィンドウでの座標になるよう計算
+	/// @param Pos 仮想ウィンドウでの座標
+	Vec2  Cal_Pos(const Vec2& Pos) const {//左下からの座標にします！！←後回しかな
+		return Pos * Scall + Offset_Pos;
+	}
+	/// @brief 実ウィンドウでの大きさになるように計算
+	/// @param Size 仮想ウィンドウでの大きさ
+	Vec2 Cal_Size(const Vec2& Size) const {
+		return  Size * Scall;
+	}
+	/// @brief 実ウィンドウでの大きさになるように計算
+	/// @param Size 仮想ウィンドウでの大きさ
+	auto Cal_Size(const auto& Size)const {
+		return Size * Scall;
 	}
 
-	Vec2  pointer(Vec2& p) {//左下からの座標にします！！
-		point.x = p.x+Op.x;
-		point.y = p.y+Op.y;
-		return point;
+	Line toReal(const Line& Raw) const {
+		return Line{ Cal_Pos(Raw.begin),Cal_Size(Raw.end) };
 	}
-
-
+	RectF toReal(const RectF& Raw) const {
+		return RectF{ Cal_Pos(Raw.pos),Cal_Size(Raw.size) };
+	}
+	Circle toReal(const Circle& Raw) const {
+		return Circle{ Cal_Pos(Raw.center),Cal_Size(Raw.r) };
+	}
+	Triangle toRael(const Triangle& Raw)const {
+		return Triangle{ Cal_Pos(Raw.p0),Cal_Pos(Raw.p1),Cal_Pos(Raw.p2) };
+	}
+	Bezier2 toReal(const Bezier2& Raw)const {
+		return Bezier2{ Cal_Pos(Raw.p0),Cal_Pos(Raw.p1),Cal_Pos(Raw.p2) };
+	}
+	Bezier3 toReal(const Bezier3& Raw)const {
+		return Bezier3{ Cal_Pos(Raw.p0),Cal_Pos(Raw.p1),Cal_Pos(Raw.p2),Cal_Pos(Raw.p3) };
+	}
 };

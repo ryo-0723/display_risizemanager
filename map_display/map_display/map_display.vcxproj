@@ -315,6 +315,7 @@
   <ItemGroup>
     <ClInclude Include="display_manager.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="ScreenStyle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App\example\obj\blacksmith.obj">

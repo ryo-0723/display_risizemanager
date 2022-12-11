@@ -2,10 +2,8 @@
 #include"display_manager.h"
 void Main()
 {
-
-	screen_resizer display(1200,1000);
-	double scalling_x,scalling_y;
-	double scall;
+	Screen_Resizer display({ 1200,1000 });
+	display.SetStyle(ScreenStyle::Center);
 	//Scene::SetResizeMode(ResizeMode::Keep);
 	//シーンサイズ固定 今回はこれは使わずにやる
 	Window::SetStyle(WindowStyle::Sizable);
@@ -14,20 +12,11 @@ void Main()
 
 	while (System::Update())
 	{
-		display.resizer();
-		//Rect{300,300, 200,300 }.draw();
-		scalling_x = Scene::Size().x / 1200.0;
-		scalling_y= Scene::Size().y / 1000.0;
-		scall=scalling_x < scalling_y ? scalling_x : scalling_y;
+		display.Resize_Update();
+		RectF{ display.Cal_Pos({0,0}), display.Cal_Size({1200,1000}) }.draw(Palette::Aqua);
 
-
-		//RectF{display.pointer().x,0,100,100}.draw();
-		RectF{ display.pointer().x,display.pointer().y, 1200.0 * scall,1000.0 * scall}.draw(Palette::Aqua);
-		ClearPrint();
-		Print << Scene::Size().x;
-		Print << Scene::Size().y;
-		Print << Scene::Height();
-		Print << Scene::Width();
-		Print << 1200 * scall;
+		//display.toReal(RectF{ 0,0, 1200, 1000 }).draw(Palette::Green);
+		//display.toReal(Circle{ 1100,900,20 }).draw(Palette::Pink);
+		//display.toReal(Circle{ 600,500,20 }).draw(Palette::Pink);
 	}
 }
