@@ -14,7 +14,7 @@ private:
 	Vec2 Offset_Pos = {};
 	Vec2 Scalling = {};
 	double Scall = 0;
-	uint8 Style=1;
+	uint8 Style = 1;
 public:
 	Screen_Resizer(const Vec2& Virtual_Size) :Virtual_Size(Virtual_Size) {}
 	/*仮想スクリーンの大きさを指定する*/
@@ -24,17 +24,21 @@ public:
 		//仮想ウィンドウと実ウィンドウの大きさの比率を求める
 		Scall = Scalling.x < Scalling.y ? Scalling.x : Scalling.y;
 		//x,yのうち、より縮小しなければ画面に入らないほうの縮小率を求める
-
-		if (Style==0) {
-			
+		if (Style == 0) {
+			Offset_Pos.x = 0;
+			Offset_Pos.y = (Scene::Size().y - Virtual_Size.y * Scall) * 0.5;
 		}
-		else if (Style=1) {
+		else if (Style == 1) {
 			Offset_Pos = (Scene::Size() - Virtual_Size * Scall) * 0.5;
 		}
 		else {
-
+			Offset_Pos.x = (Scene::Size().x - Virtual_Size.x * Scall);
+			Offset_Pos.y = (Scene::Size().y - Virtual_Size.y * Scall) * 0.5;
 		}
 		//pos*scallは実ウィンドウ内での仮想ウィンドウの大きさ
+	}
+	Vec2 GetWindow_Size() {
+		return Scene::Size() * Scall;
 	}
 	void SetStyle(ScreenStyle Style) {
 		this->Style = (uint8)Style;
@@ -51,7 +55,7 @@ public:
 	}
 	/// @brief 実ウィンドウでの大きさになるように計算
 	/// @param Size 仮想ウィンドウでの大きさ
-	auto Cal_Size(const auto& Size)const {
+	double Cal_Size(const double& Size)const {
 		return Size * Scall;
 	}
 
