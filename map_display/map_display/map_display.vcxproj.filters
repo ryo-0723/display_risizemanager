@@ -782,5 +782,8 @@
     <ClInclude Include="display_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Screen_Split.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
