@@ -113,6 +113,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="display_manager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -314,9 +315,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="display_manager.h" />
-    <ClInclude Include="Screen_Split.h" />
+    <ClInclude Include="FieldConstant.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ScreenStyle.h" />
+    <ClInclude Include="Field.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App\example\obj\blacksmith.obj">

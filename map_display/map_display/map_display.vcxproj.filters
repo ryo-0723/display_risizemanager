@@ -144,6 +144,9 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="display_manager.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -782,7 +785,10 @@
     <ClInclude Include="display_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Screen_Split.h">
+    <ClInclude Include="Field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldConstant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
