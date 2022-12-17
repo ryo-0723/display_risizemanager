@@ -316,9 +316,11 @@
   <ItemGroup>
     <ClInclude Include="display_manager.h" />
     <ClInclude Include="FieldConstant.h" />
+    <ClInclude Include="MenuConstant.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ScreenStyle.h" />
     <ClInclude Include="Field.h" />
+    <ClInclude Include="Menu.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App\example\obj\blacksmith.obj">

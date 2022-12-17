@@ -26,6 +26,9 @@ public:
 
 	Vec2 Get_Pos();
 
+	Vec2 GetNowSize() {
+		return Cal_Size(defaultKeepPosY *(Virtual_Size / defaultKeepPosY)*(Scene::Size() / Virtual_Size));
+	}
 	/// @brief ウィンドウの表示タイプの変更
 	/// @param Style 表示タイプ
 	void SetStyle(ScreenStyle r);

@@ -77,7 +77,7 @@ double Screen_Resizer::Cal_Size(const double& Size)const {
 }
 
 Line Screen_Resizer::toReal(const Line& Raw) const {
-	return Line{ Cal_Pos(Raw.begin),Cal_Size(Raw.end) };
+	return Line{ Cal_Pos(Raw.begin),Cal_Pos(Raw.end) };
 }
 
 RectF Screen_Resizer::toReal(const RectF& Raw) const {
