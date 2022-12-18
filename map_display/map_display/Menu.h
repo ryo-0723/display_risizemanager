@@ -17,7 +17,7 @@ public:
 	}
 	void MenuUIDraw() {
 		resizer.toReal(box).draw();
-		if(resizer.toReal(TCP_box).mouseOver().draw()){
+		if(resizer.toReal(TCP_box).mouseOver()){
 			resizer.toReal(TCP_box).movedBy(10,10).draw();
 		}
 		else {
