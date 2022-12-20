@@ -314,9 +314,11 @@
     <Xml Include="App\example\xml\test.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="display_manager.h" />
     <ClInclude Include="FieldConstant.h" />
     <ClInclude Include="MenuConstant.h" />
+    <ClInclude Include="Slider.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ScreenStyle.h" />
     <ClInclude Include="Field.h" />

@@ -51,6 +51,8 @@ public:
 
 	RectF toReal(const RectF& Raw) const;
 
+	RoundRect toReal(const RoundRect& Raw) const;
+
 	Circle toReal(const Circle& Raw) const;
 
 	Triangle toRael(const Triangle& Raw)const;

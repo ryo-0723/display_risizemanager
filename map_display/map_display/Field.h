@@ -7,7 +7,7 @@ private:
 	int offset_x=200;
 	int offset_y=200;
 
-	int offset2_x = 4000;
+	int offset2_x = 200;
 	int offset2_y = 200;
 
 	Vec2  FieldPos() {
@@ -18,26 +18,26 @@ public:
 	Field(Screen_Resizer& resizer):resizer(resizer){}
 
 	void FieldWoodDraw() {
-		//Print << resizer.toReal(RectF{ 0,0,1000,1000 }).draw();
-		//赤ゾーンフィールド
-		resizer.toReal(RectF{ 0+offset_x,0+offset_y,3424,6924 }).rounded(1).drawFrame(0, resizer.Cal_Size(38), Palette::Burlywood);
-		resizer.toReal(RectF{ 0 + offset_x,800 + offset_y,800,38 }).draw(Palette::Burlywood);
-		resizer.toReal(RectF{2624+offset_x,800+offset_y,800,38}).draw(Palette::Burlywood);
-		//ロボットのスタートゾーン横の長い棒
-		resizer.toReal(RectF{800+offset_x,5924+offset_y,38,1000}).draw(Palette::Burlywood);
-		//横向きの長い棒
-		resizer.toReal(RectF{0+offset_x,2762+offset_y,1212,38}).draw(Palette::Burlywood);
-		//白い三つの四角のとこの棒
-		resizer.toReal(RectF{ 800 + offset_x,2800 + offset_y,38,2300 }).draw(Palette::Burlywood);
+//Print << resizer.toReal(RectF{ 0,0,1000,1000 }).draw();
+//赤ゾーンフィールド
+resizer.toReal(RectF{ 0 + offset_x,0 + offset_y,3424,6924 }).rounded(1).drawFrame(0, resizer.Cal_Size(38), Palette::Burlywood);
+resizer.toReal(RectF{ 0 + offset_x,800 + offset_y,800,38 }).draw(Palette::Burlywood);
+resizer.toReal(RectF{ 2624 + offset_x,800 + offset_y,800,38 }).draw(Palette::Burlywood);
+//ロボットのスタートゾーン横の長い棒
+resizer.toReal(RectF{ 800 + offset_x,5924 + offset_y,38,1000 }).draw(Palette::Burlywood);
+//横向きの長い棒
+resizer.toReal(RectF{ 0 + offset_x,2762 + offset_y,1212,38 }).draw(Palette::Burlywood);
+//白い三つの四角のとこの棒
+resizer.toReal(RectF{ 800 + offset_x,2800 + offset_y,38,2300 }).draw(Palette::Burlywood);
 
-		//上から二つ目の左の四角の木枠
-		resizer.toReal(RectF{ 374 + offset_x,1462 + offset_y,838,38 }).draw(Palette::Burlywood);
-		resizer.toReal(RectF{ 374 + offset_x,1462 + offset_y,38,876 }).draw(Palette::Burlywood);
-		resizer.toReal(RectF{ 374 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Burlywood);
-		//上から二つ目の右の四角の木枠
-		resizer.toReal(RectF{ 2212 + offset_x,1462 + offset_y,838,38 }).draw(Palette::Burlywood);
-		resizer.toReal(RectF{ 3012 + offset_x,1462 + offset_y,38,876 }).draw(Palette::Burlywood);
-		resizer.toReal(RectF{ 2212 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Burlywood);
+//上から二つ目の左の四角の木枠
+resizer.toReal(RectF{ 374 + offset_x,1462 + offset_y,838,38 }).draw(Palette::Burlywood);
+resizer.toReal(RectF{ 374 + offset_x,1462 + offset_y,38,876 }).draw(Palette::Burlywood);
+resizer.toReal(RectF{ 374 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Burlywood);
+//上から二つ目の右の四角の木枠
+resizer.toReal(RectF{ 2212 + offset_x,1462 + offset_y,838,38 }).draw(Palette::Burlywood);
+resizer.toReal(RectF{ 3012 + offset_x,1462 + offset_y,38,876 }).draw(Palette::Burlywood);
+resizer.toReal(RectF{ 2212 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Burlywood);
 	}
 	void FieldLineDraw() {
 		//上から一番目の四角の白い線
@@ -51,9 +51,9 @@ public:
 		//下側の長い横線
 		resizer.toReal(RectF{ 1212 + offset_x,2770 + offset_y,2212,30 }).draw();
 		//はっととかが置いてあるとこの線
-		resizer.toReal(RectF{ 2924 + offset_x,3224 + offset_y,500,2000 }).drawFrame(resizer.Cal_Size(30),0);
+		resizer.toReal(RectF{ 2924 + offset_x,3224 + offset_y,500,2000 }).drawFrame(resizer.Cal_Size(30), 0);
 		//三つの四角
-		resizer.toReal(RectF{0+offset_x,2800+offset_y,800,500}).drawFrame(resizer.Cal_Size(30),0);
+		resizer.toReal(RectF{ 0 + offset_x,2800 + offset_y,800,500 }).drawFrame(resizer.Cal_Size(30), 0);
 		resizer.toReal(RectF{ 0 + offset_x,3700 + offset_y,800,500 }).drawFrame(resizer.Cal_Size(30), 0);
 		resizer.toReal(RectF{ 0 + offset_x,4600 + offset_y,800,500 }).drawFrame(resizer.Cal_Size(30), 0);
 		//ロボットのスタートゾーン横の大きい四角
@@ -117,4 +117,15 @@ public:
 
 	}
 
+
+	void red(){
+		FieldWoodDraw();
+		FieldLineDraw();
+		FieldRedDraw();
+	}
+	void blue() {
+		BlueFieldWoodDraw();
+		BlueFieldLineDraw();
+		FieldBlueDraw();
+	}
 };

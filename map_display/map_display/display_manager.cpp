@@ -84,6 +84,10 @@ RectF Screen_Resizer::toReal(const RectF& Raw) const {
 	return RectF{ Cal_Pos(Raw.pos),Cal_Size(Raw.size) };
 }
 
+RoundRect Screen_Resizer::toReal(const RoundRect& Raw) const {
+	return RoundRect{ Cal_Pos(Raw.rect.pos),Cal_Size(Raw.rect.size),Cal_Size(Raw.r)};
+}
+
 Circle Screen_Resizer::toReal(const Circle& Raw) const {
 	return Circle{ Cal_Pos(Raw.center),Cal_Size(Raw.r) };
 }
