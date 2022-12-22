@@ -92,7 +92,7 @@ Circle Screen_Resizer::toReal(const Circle& Raw) const {
 	return Circle{ Cal_Pos(Raw.center),Cal_Size(Raw.r) };
 }
 
-Triangle Screen_Resizer::toRael(const Triangle& Raw)const {
+Triangle Screen_Resizer::toReal(const Triangle& Raw)const {
 	return Triangle{ Cal_Pos(Raw.p0),Cal_Pos(Raw.p1),Cal_Pos(Raw.p2) };
 }
 

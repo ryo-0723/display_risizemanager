@@ -18,9 +18,9 @@ void Main()
 	Screen_Resizer display1({ 4000,7500 });
 	Screen_Resizer display2({ 1100,700 }, ScreenStyle::Keep);
 	Button b(display2);
-	Slider s(display2);
+	Slider slider(display2);
 	Field field(display1);
-	Menu menu(display2, b,s);
+	Menu menu(display2, b,slider);
 
 	display1.SetStyle(ScreenStyle::Center);
 	Window::SetStyle(WindowStyle::Sizable);//ウィンドウを自由に大きさ変えれるやつ
@@ -41,9 +41,13 @@ void Main()
 		Print << right.pos.x;
 		display1.toReal(RectF{ 0,0, 4000, 7500 }).draw(ColorF{ 0, 1.0, 0, 0.5 });
 		//display2.toReal(RectF{ 0,0, 700, 1000 }).draw(ColorF{ 0.0, 0.5, 1.0, 0.5 });
-		field.red();
-		//field.blue();
+		//
+		//
 		menu.MenuFrameDraw();
 		menu.MenuUIDraw();
+
+		if (slider.Slider_jadge(Feildpick, { 255,0,0 }, { 0,0,255 }))
+			field.blue();
+		else field.red();
 	}
 }

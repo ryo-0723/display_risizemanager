@@ -4,11 +4,11 @@
 class Field {
 private:
 	Screen_Resizer& resizer;
-	int offset_x=200;
-	int offset_y=200;
+	int offset_x=290;
+	int offset_y=250;
 
-	int offset2_x = 200;
-	int offset2_y = 200;
+	int offset2_x = 290;
+	int offset2_y = 250;
 
 	Vec2  FieldPos() {
 

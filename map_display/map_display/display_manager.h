@@ -55,7 +55,7 @@ public:
 
 	Circle toReal(const Circle& Raw) const;
 
-	Triangle toRael(const Triangle& Raw)const;
+	Triangle toReal(const Triangle& Raw)const;
 
 	Bezier2 toReal(const Bezier2& Raw)const;
 
