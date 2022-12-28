@@ -2,7 +2,7 @@
 #include"Field.h"
 #include"Menu.h"
 
-SIV3D_SET(EngineOption::Renderer::PlatformDefault);
+SIV3D_SET(EngineOption::Renderer::Direct3D11);
 
 std::pair<RectF, RectF> Screen_SplitFixedRight(const RectF& raw, double px) {
 	return std::make_pair(

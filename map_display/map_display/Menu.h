@@ -16,8 +16,8 @@ public:
 		:resizer(resizer), button(button), slider(slider) {}
 	const Font Feildpickfont{ 20 };
 	const Font TCP{ 20 };
-	const Font speed{ 50 };
-	const Font speed_num{ 100,Typeface::CJK_Regular_JP };
+	const Font speed{ 50,Typeface::CJK_Regular_JP };
+	const Font speed_num{ 100,Resource(U"engine/font/DSEG7ModernMini-Bold.ttf")};
 	const Font RobotPos{ 40 };
 	void MenuFrameDraw() {
 		resizer.toReal(Line{ 0,0,0,500 }).draw();
@@ -37,13 +37,13 @@ public:
 		robotposition_show();
 		TCP_show();
 		trajectory();
+		mechanism_state();
 	}
 	void speedmeter() {
-		resizer.toReal(Speedmeter).drawArc(-130_deg, 260_deg, resizer.Cal_Size(5), resizer.Cal_Size(0), Palette::Aqua);
+		resizer.toReal(Speedmeter).drawArc(-130_deg, 260_deg, resizer.Cal_Size(5), resizer.Cal_Size(0), Palette::Black);
 		speed(U"m/s").drawBaseAt(resizer.Cal_Pos({ Speedmeter.center.x,Speedmeter.center.y + Speedmeter.r * 0.7 }), Palette::Limegreen);
-		//speed_num(10.3).drawAt(resizer.Cal_Pos( Speedmeter.center), Palette::Limegreen);
-		resizer.toReal(Speedneedle).rotatedAt(resizer.Cal_Pos({ 190, 900 }), 30_deg).draw(Palette::Aqua);
-		speed_num(10.3).drawAt(resizer.Cal_Pos({ Speedmeter.center.x,Speedmeter.center.y + Speedmeter.r * -0.15 }), Palette::Limegreen);
+		resizer.toReal(Speedneedle).rotatedAt(resizer.Cal_Pos({ 190, 900 }), 30_deg).draw(Palette::Red).drawFrame(resizer.Cal_Size(1), 0, Palette::Darkgrey);
+		speed_num(20.3).drawAt(resizer.Cal_Pos({ Speedmeter.center.x,Speedmeter.center.y + Speedmeter.r * -0.15 }), Palette::Blue);
 	}
 	void movetimer() {
 		resizer.toReal(Movetimer).drawArc(-130_deg, 260_deg, resizer.Cal_Size(5), resizer.Cal_Size(0), Palette::Aqua);
@@ -51,18 +51,27 @@ public:
 	void robotposition_show() {
 		resizer.toReal(RobotPos_show1).draw(resizer.Cal_Size(0.5), Palette::Black);
 		resizer.toReal(RobotPos_show2).draw(resizer.Cal_Size(0.5), Palette::Black);
-		RobotPos(U"現在座標").draw(resizer.Cal_Pos({ RobotPos_show1.begin.x + 100,RobotPos_show1.end.y + 50 }), Palette::Black);
-		RobotPos(U"X:", 1020).draw(resizer.Cal_Pos({ RobotPos_show1.begin.x + 100,RobotPos_show1.end.y+130 }), Palette::Black);
-		RobotPos(U"Y:", 1020).draw(resizer.Cal_Pos({ RobotPos_show1.begin.x + 100,RobotPos_show1.end.y + 200 }), Palette::Black);
-		RobotPos(U"YAW:", 1020).draw(resizer.Cal_Pos({ RobotPos_show1.begin.x + 100,RobotPos_show1.end.y + 270 }), Palette::Black);
+
+		const auto f = [&](String&& str, double deltaY) {
+			RobotPos(str).draw(resizer.Cal_Pos({ RobotPos_show1.begin.x + 100,RobotPos_show1.end.y + deltaY }), Palette::Black);
+		};
+		f(U"現在座標",        15);
+		f(U"X:{}"_fmt(123),   70);
+		f(U"Y:{}"_fmt(123),   130);
+		f(U"θ:{}"_fmt(1000), 190);
+
 	}
 	void TCP_show() {
 		if (button.Rect_judge(TCP_box, TCP, U"Connect to", U"Connected", { 0,0,127 }, { 120,0,0 })) {
 		}
 	}
 	void trajectory() {
+		resizer.toReal(trajectory_import).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0), Palette::Black);
 		resizer.toReal(trajectory_frame).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0),Palette::Black);
 	}
+	void mechanism_state() {
+		resizer.toReal(mechanism_state_frame).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0), Palette::Black);
 
+	}
 
 };

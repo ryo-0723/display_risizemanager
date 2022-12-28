@@ -12,6 +12,8 @@ constexpr Circle Speedmeter{190,900,140};
 constexpr Circle Movetimer{ 520,900,140 };
 //constexpr Triangle Speedneedle{190,900,100 };
 constexpr Triangle Speedneedle{ {184,900},{190,775},{196,900} };
-constexpr Line RobotPos_show1{700,1060,700,700};
-constexpr Line RobotPos_show2{ 700,700,1100,700 };
+constexpr Line RobotPos_show1{700,1060,700,780};//枠の左の線
+constexpr Line RobotPos_show2{ 700,780,1100,780 };
+constexpr RectF trajectory_import{ 50,70,530,50 };
 constexpr RectF trajectory_frame{ 50,130,530,590 };
+constexpr RectF mechanism_state_frame{ 600,130,480,630 };
