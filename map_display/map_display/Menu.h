@@ -5,15 +5,17 @@
 #include"MenuConstant.h"
 #include"Button.h"
 #include"Slider.h"
+#include"List.h"
 # include <Siv3D.hpp>
 class Menu {
 private:
 	Screen_Resizer& resizer;
 	Button& button;
 	Slider& slider;
+	List& list;
 public:
-	Menu(Screen_Resizer& resizer, Button& button, Slider& slider)
-		:resizer(resizer), button(button), slider(slider) {}
+	Menu(Screen_Resizer& resizer, Button& button, Slider& slider,List& list)
+		:resizer(resizer), button(button), slider(slider),list(list) {}
 	const Font Feildpickfont{ 20 };
 	const Font TCP{ 20 };
 	const Font speed{ 50,Typeface::CJK_Regular_JP };
@@ -67,7 +69,8 @@ public:
 	}
 	void trajectory() {
 		resizer.toReal(trajectory_import).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0), Palette::Black);
-		resizer.toReal(trajectory_frame).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0),Palette::Black);
+		//resizer.toReal(trajectory_frame).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0),Palette::Black);
+		list.draw();
 	}
 	void mechanism_state() {
 		resizer.toReal(mechanism_state_frame).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0), Palette::Black);

@@ -3,7 +3,7 @@
 #include"Menu.h"
 
 SIV3D_SET(EngineOption::Renderer::Direct3D11);
-
+Array<String>items = {U"hello",U"good"};
 std::pair<RectF, RectF> Screen_SplitFixedRight(const RectF& raw, double px) {
 	return std::make_pair(
 		RectF{ 0,0,raw.w - px,raw.h },
@@ -19,8 +19,9 @@ void Main()
 	Screen_Resizer display2({ 1100,700 }, ScreenStyle::Keep);
 	Button b(display2);
 	Slider slider(display2);
+	List list(display2, trajectory_frame,15,items,35);
 	Field field(display1);
-	Menu menu(display2, b,slider);
+	Menu menu(display2, b,slider,list);
 
 	display1.SetStyle(ScreenStyle::Center);
 	Window::SetStyle(WindowStyle::Sizable);//ウィンドウを自由に大きさ変えれるやつ
