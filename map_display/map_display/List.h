@@ -15,7 +15,12 @@ private:
 	double pos;
 
  public:
-
+	/// @brief List.hのコンストラクタ
+	/// @param resizer 表示画面
+	/// @param List_Frame リストの表示場所
+	/// @param List_Volume 一度に表示するデータの数
+	/// @param items 表示するリストファイルデータ
+	/// @param bar_size 横のサイドバーの幅
 	List(Screen_Resizer& resizer,RectF List_Frame, unsigned int List_Volume,Array<String> items,double bar_size)
 		:resizer(resizer),List_Frame(List_Frame),List_Volume(List_Volume),items(items),bar_size(bar_size) {
 		OneListSize.y = List_Frame.h / List_Volume;
@@ -28,20 +33,22 @@ private:
 
 
 	void draw() {
+		/*
 		for (int i = 0; i < 2;i++) {
 			resizer.toReal(Sidebutton_r[i]).draw(Palette::Dimgray).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0), Palette::Black);
 			resizer.toReal(Sidebutton_t[i]).draw();
 		}
-		resizer.toReal(List_Frame).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0), Palette::Black);
+		*/
+		//resizer.toReal(RectF{ List_Frame.pos, List_Frame.size.x-bar_size,List_Frame.size.y }).drawFrame(resizer.Cal_Size(0.5), resizer.Cal_Size(0.5), Palette::Black);
 		for (int i = 0; i < List_Volume;i++) {
 			resizer.toReal(RectF{ List_Frame.x,pos,List_Frame.w - bar_size ,OneListSize.y })
-				.drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0), Palette::Black);
+				.drawFrame(resizer.Cal_Size(0.5), resizer.Cal_Size(0), Palette::Black);
 			pos += OneListSize.y;
 		}
 		pos = List_Frame.y;
 	}
 	void Set_item() {
-
+	
 
 	}
 
