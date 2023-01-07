@@ -68,7 +68,6 @@ public:
 		}
 	}
 	void trajectory() {
-		resizer.toReal(trajectory_import).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0), Palette::Black);
 		//resizer.toReal(trajectory_frame).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0),Palette::Black);
 		list.draw();
 	}

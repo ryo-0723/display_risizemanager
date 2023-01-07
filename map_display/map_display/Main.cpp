@@ -19,7 +19,7 @@ void Main()
 	Screen_Resizer display2({ 1100,700 }, ScreenStyle::Keep);
 	Button b(display2);
 	Slider slider(display2);
-	List list(display2, trajectory_frame,15,items,35);
+	List list(display2, TrajectoryImportFrame, trajectory_frame,15,items,30);
 	Field field(display1);
 	Menu menu(display2, b,slider,list);
 
