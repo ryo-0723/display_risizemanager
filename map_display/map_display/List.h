@@ -50,7 +50,7 @@ public:
 		Download.resized(resizer.Cal_Size(ListImportButton.h * 0.8))
 			.drawAt(resizer.Cal_Pos(ListImportButton.center()), Palette::Black);
 		if (path.has_value()) 
-		Print<<FileSystem::FileName(*path);
+		List_Font(FileSystem::FileName(*path)).drawAt(resizer.Cal_Pos({ ListImportFrame.center()}), Palette::Black);
 		if (resizer.toReal(ListImportButton).leftClicked()) {
 			path = Dialog::OpenFile({ FileFilter::CSV() });
 			//const CSV csv{ U"C:/Users/jlgif/Downloads/robot_move_ver0.0.csv"};
