@@ -36,7 +36,7 @@ public:
 		//resizer.toReal(Feildpick).draw(Palette::Darkgrey);
 		//Feildpickfont(U"red").drawAt(resizer.Cal_Pos(Feildpick.leftCenter()), Palette::Red);
 		//Feildpickfont(U"blue").drawAt(resizer.Cal_Pos(Feildpick.rightCenter()), Palette::Aqua);
-		meter.draw(20.9);
+		meter.draw(10.2);
 		movetimer();
 		robotposition_show();
 		TCP_show();
