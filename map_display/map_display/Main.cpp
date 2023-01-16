@@ -3,7 +3,6 @@
 #include"Menu.h"
 
 SIV3D_SET(EngineOption::Renderer::Direct3D11);
-Array<String>items = {U"hello",U"good"};
 std::pair<RectF, RectF> Screen_SplitFixedRight(const RectF& raw, double px) {
 	return std::make_pair(
 		RectF{ 0,0,raw.w - px,raw.h },
@@ -17,12 +16,9 @@ void Main()
 	Window::Resize(1400, 700);
 	Screen_Resizer display1({ 4000,7500 });
 	Screen_Resizer display2({ 1100,700 }, ScreenStyle::Keep);
-	Button b(display2);
-	Slider slider(display2);
-	Meter meter(display2, Speedmeter, U"m/s", {0,30});
-	List list(display2, TrajectoryImportFrame, trajectory_frame,15,items,30);
+
 	Field field(display1);
-	Menu menu(display2, b,slider,list,meter);
+	Menu menu(display2);
 
 	display1.SetStyle(ScreenStyle::Center);
 	Window::SetStyle(WindowStyle::Sizable);//ウィンドウを自由に大きさ変えれるやつ
@@ -35,21 +31,12 @@ void Main()
 		display1.Resize_Update(left);
 		display2.Resize_Update(right);
 
-
-
 		ClearPrint();
-		Print << display2.Get_Pos();
-		Print << Cursor::Pos();
-		Print << right.pos.x;
 		display1.toReal(RectF{ 0,0, 4000, 7500 }).draw(ColorF{ 0, 1.0, 0, 0.5 });
 		//display2.toReal(RectF{ 0,0, 700, 1000 }).draw(ColorF{ 0.0, 0.5, 1.0, 0.5 });
 		//
 		//
 		menu.MenuFrameDraw();
 		menu.MenuUIDraw();
-
-		if (slider.Slider_jadge(Feildpick, { 255,0,0 }, { 0,0,255 }))
-			field.blue();
-		else field.red();
 	}
 }

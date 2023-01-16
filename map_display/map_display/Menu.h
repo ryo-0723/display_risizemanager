@@ -10,14 +10,18 @@
 # include <Siv3D.hpp>
 class Menu {
 private:
+	Array<String>items = { U"hello",U"good" };
 	Screen_Resizer& resizer;
-	Button& button;
-	Slider& slider;
-	List& list;
-	Meter& meter;
+	Button button;
+	Slider slider;
+	Meter Speedmeter;
+	Meter Movetimer;
+	List list;
 public:
-	Menu(Screen_Resizer& resizer, Button& button, Slider& slider,List& list,Meter& meter)
-		:resizer(resizer), button(button), slider(slider),list(list),meter(meter) {}
+	Menu(Screen_Resizer& resizer)
+		:resizer(resizer), button(resizer), slider(resizer)
+		,list(resizer, TrajectoryImportFrame, trajectory_frame, 15, 30)
+		,Speedmeter(resizer, SpeedMeter, U"m/s", { 0,30 }),Movetimer(resizer, MoveTimer, U"/s", { 0,10 }) {}
 	const Font Feildpickfont{ 20 };
 	const Font TCP{ 20 };
 	const Font speed{ 50,Typeface::CJK_Regular_JP };
@@ -36,16 +40,14 @@ public:
 		//resizer.toReal(Feildpick).draw(Palette::Darkgrey);
 		//Feildpickfont(U"red").drawAt(resizer.Cal_Pos(Feildpick.leftCenter()), Palette::Red);
 		//Feildpickfont(U"blue").drawAt(resizer.Cal_Pos(Feildpick.rightCenter()), Palette::Aqua);
-		meter.draw(10.2);
-		movetimer();
+		Speedmeter.draw(30);
+		Movetimer.draw(0.97);
 		robotposition_show();
 		TCP_show();
-		trajectory();
-		mechanism_state();
-	}
 
-	void movetimer() {
-		resizer.toReal(Movetimer).drawArc(-130_deg, 260_deg, resizer.Cal_Size(5), resizer.Cal_Size(0), Palette::Aqua);
+		mechanism_state();
+		list.draw();
+
 	}
 	void robotposition_show() {
 		resizer.toReal(RobotPos_show1).draw(resizer.Cal_Size(0.5), Palette::Black);
@@ -63,10 +65,6 @@ public:
 	void TCP_show() {
 		if (button.Rect_judge(TCP_box, TCP, U"Connect to", U"Connected", { 0,0,127 }, { 120,0,0 })) {
 		}
-	}
-	void trajectory() {
-		//resizer.toReal(trajectory_frame).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0),Palette::Black);
-		list.draw();
 	}
 	void mechanism_state() {
 		resizer.toReal(mechanism_state_frame).drawFrame(resizer.Cal_Size(1), resizer.Cal_Size(0), Palette::Black);
