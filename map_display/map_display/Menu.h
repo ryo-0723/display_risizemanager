@@ -10,27 +10,34 @@
 # include <Siv3D.hpp>
 class Menu {
 private:
-	Array<String>items = { U"hello",U"good" };
 	Screen_Resizer& resizer;
 	Button button;
 	Slider slider;
 	Meter Speedmeter;
 	Meter Movetimer;
 	List list;
+
 public:
 	Menu(Screen_Resizer& resizer)
 		:resizer(resizer), button(resizer), slider(resizer)
 		,list(resizer, TrajectoryImportFrame, trajectory_frame, 15, 30)
-		,Speedmeter(resizer, SpeedMeter, U"m/s", { 0,30 }),Movetimer(resizer, MoveTimer, U"/s", { 0,10 }) {}
+		,Speedmeter(resizer, SpeedMeter, U"m/s", { 0,30 })
+		,Movetimer(resizer, MoveTimer, U"/s", { 0,10 }) {}
+
 	const Font Feildpickfont{ 20 };
 	const Font TCP{ 20 };
 	const Font speed{ 50,Typeface::CJK_Regular_JP };
-	
 	const Font RobotPos{ 40 };
+	const Texture Signal_max  { 0xf690_icon ,100 };
+	const Texture Signal_good { 0xf693_icon ,100 };
+	const Texture Signal_fair { 0xf692_icon ,100 };
+	const Texture Signal_week { 0xf691_icon ,100 };
+	const Texture Signal_slash{ 0xf694_icon ,100 };
+ 
 	void MenuFrameDraw() {
 		resizer.toReal(Line{ 0,0,0,500 }).draw();
 		resizer.toReal(Line{ 5,50,5,resizer.GetNowSize().y - 100 }).draw();
-		Print << resizer.GetNowSize();
+		//Print << resizer.GetNowSize();
 		//メニュー画面の左側に線を書きたいけどあと回し
 	}
 	void MenuUIDraw() {
@@ -42,14 +49,16 @@ public:
 		//Feildpickfont(U"blue").drawAt(resizer.Cal_Pos(Feildpick.rightCenter()), Palette::Aqua);
 		Speedmeter.draw(30);
 		Movetimer.draw(0.97);
-		robotposition_show();
+		robotposition_show(100,200,360);
+
 		TCP_show();
 
 		mechanism_state();
 		list.draw();
 
 	}
-	void robotposition_show() {
+
+	void robotposition_show(int x,int y,int yaw) {
 		resizer.toReal(RobotPos_show1).draw(resizer.Cal_Size(0.5), Palette::Black);
 		resizer.toReal(RobotPos_show2).draw(resizer.Cal_Size(0.5), Palette::Black);
 
@@ -57,10 +66,9 @@ public:
 			RobotPos(str).draw(resizer.Cal_Pos({ RobotPos_show1.begin.x + 100,RobotPos_show1.end.y + deltaY }), Palette::Black);
 		};
 		f(U"現在座標",        15);
-		f(U"X:{}"_fmt(123),   70);
-		f(U"Y:{}"_fmt(123),   130);
-		f(U"θ:{}"_fmt(1000), 190);
-
+		f(U"X:{}"_fmt(x),   70);
+		f(U"Y:{}"_fmt(y),   130);
+		f(U"θ:{}"_fmt(yaw), 190);
 	}
 	void TCP_show() {
 		if (button.Rect_judge(TCP_box, TCP, U"Connect to", U"Connected", { 0,0,127 }, { 120,0,0 })) {
