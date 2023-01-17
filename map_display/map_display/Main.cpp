@@ -34,7 +34,7 @@ void Main()
 	Print << WorkArea;
 	while (System::Update())
 	{
-		const auto [left, right] = Screen_SplitFixedRight(Scene::Rect(), WorkArea.h*(1.04068117));
+		const auto [left, right] = Screen_SplitFixedRight(Scene::Rect(), 1100);
 		//left.draw(ColorF{ 0.0, 0.5, 1.0, 0.1 });
 		right.draw(Palette::Whitesmoke);
 		display1.Resize_Update(left);
