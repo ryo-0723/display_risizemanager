@@ -4,8 +4,8 @@
 class Field {
 private:
 	Screen_Resizer& resizer;
-	int offset_x=290;
-	int offset_y=250;
+	int offset_x = 290;
+	int offset_y = 250;
 
 	int offset2_x = 290;
 	int offset2_y = 250;
@@ -15,29 +15,29 @@ private:
 	}
 
 public:
-	Field(Screen_Resizer& resizer):resizer(resizer){}
+	Field(Screen_Resizer& resizer) :resizer(resizer) {}
 
 	void FieldWoodDraw() {
-//Print << resizer.toReal(RectF{ 0,0,1000,1000 }).draw();
-//赤ゾーンフィールド
-resizer.toReal(RectF{ 0 + offset_x,0 + offset_y,3424,6924 }).rounded(1).drawFrame(0, resizer.Cal_Size(38), Palette::Burlywood);
-resizer.toReal(RectF{ 0 + offset_x,800 + offset_y,800,38 }).draw(Palette::Burlywood);
-resizer.toReal(RectF{ 2624 + offset_x,800 + offset_y,800,38 }).draw(Palette::Burlywood);
-//ロボットのスタートゾーン横の長い棒
-resizer.toReal(RectF{ 800 + offset_x,5924 + offset_y,38,1000 }).draw(Palette::Burlywood);
-//横向きの長い棒
-resizer.toReal(RectF{ 0 + offset_x,2762 + offset_y,1212,38 }).draw(Palette::Burlywood);
-//白い三つの四角のとこの棒
-resizer.toReal(RectF{ 800 + offset_x,2800 + offset_y,38,2300 }).draw(Palette::Burlywood);
+		//Print << resizer.toReal(RectF{ 0,0,1000,1000 }).draw();
+		//赤ゾーンフィールド
+		resizer.toReal(RectF{ 0 + offset_x,0 + offset_y,3424,6924 }).rounded(1).drawFrame(0, resizer.Cal_Size(38), Palette::Burlywood);
+		resizer.toReal(RectF{ 0 + offset_x,800 + offset_y,800,38 }).draw(Palette::Burlywood);
+		resizer.toReal(RectF{ 2624 + offset_x,800 + offset_y,800,38 }).draw(Palette::Burlywood);
+		//ロボットのスタートゾーン横の長い棒
+		resizer.toReal(RectF{ 800 + offset_x,5924 + offset_y,38,1000 }).draw(Palette::Burlywood);
+		//横向きの長い棒
+		resizer.toReal(RectF{ 0 + offset_x,2762 + offset_y,1212,38 }).draw(Palette::Burlywood);
+		//白い三つの四角のとこの棒
+		resizer.toReal(RectF{ 800 + offset_x,2800 + offset_y,38,2300 }).draw(Palette::Burlywood);
 
-//上から二つ目の左の四角の木枠
-resizer.toReal(RectF{ 374 + offset_x,1462 + offset_y,838,38 }).draw(Palette::Burlywood);
-resizer.toReal(RectF{ 374 + offset_x,1462 + offset_y,38,876 }).draw(Palette::Burlywood);
-resizer.toReal(RectF{ 374 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Burlywood);
-//上から二つ目の右の四角の木枠
-resizer.toReal(RectF{ 2212 + offset_x,1462 + offset_y,838,38 }).draw(Palette::Burlywood);
-resizer.toReal(RectF{ 3012 + offset_x,1462 + offset_y,38,876 }).draw(Palette::Burlywood);
-resizer.toReal(RectF{ 2212 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Burlywood);
+		//上から二つ目の左の四角の木枠
+		resizer.toReal(RectF{ 374 + offset_x,1462 + offset_y,838,38 }).draw(Palette::Burlywood);
+		resizer.toReal(RectF{ 374 + offset_x,1462 + offset_y,38,876 }).draw(Palette::Burlywood);
+		resizer.toReal(RectF{ 374 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Burlywood);
+		//上から二つ目の右の四角の木枠
+		resizer.toReal(RectF{ 2212 + offset_x,1462 + offset_y,838,38 }).draw(Palette::Burlywood);
+		resizer.toReal(RectF{ 3012 + offset_x,1462 + offset_y,38,876 }).draw(Palette::Burlywood);
+		resizer.toReal(RectF{ 2212 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Burlywood);
 	}
 	void FieldLineDraw() {
 		//上から一番目の四角の白い線
@@ -64,7 +64,6 @@ resizer.toReal(RectF{ 2212 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Bu
 	void FieldRedDraw() {
 		resizer.toReal(RectF{ 1212 + offset_x,5924 + offset_y,1000,1000 }).drawFrame(resizer.Cal_Size(30), 0, Palette::Red);
 		resizer.toReal(RectF{ 1212 + offset_x,6224 + offset_y,700,700 }).drawFrame(resizer.Cal_Size(30), 0, Palette::Red);
-
 	}
 
 	void BlueFieldWoodDraw() {
@@ -114,18 +113,18 @@ resizer.toReal(RectF{ 2212 + offset_x,2300 + offset_y,838,38 }).draw(Palette::Bu
 	void FieldBlueDraw() {
 		resizer.toReal(RectF{ 1212 + offset2_x,5924 + offset2_y,1000,1000 }).drawFrame(resizer.Cal_Size(30), 0, Palette::Blue);
 		resizer.toReal(RectF{ 1512 + offset2_x,6224 + offset2_y,700,700 }).drawFrame(resizer.Cal_Size(30), 0, Palette::Blue);
-
 	}
 
-
-	void red(){
-		FieldWoodDraw();
-		FieldLineDraw();
-		FieldRedDraw();
-	}
-	void blue() {
-		BlueFieldWoodDraw();
-		BlueFieldLineDraw();
-		FieldBlueDraw();
+	void draw(bool r) {
+		if (r) {
+			FieldWoodDraw();
+			FieldLineDraw();
+			FieldRedDraw();
+		}
+		else {
+			BlueFieldWoodDraw();
+			BlueFieldLineDraw();
+			FieldBlueDraw();
+		}
 	}
 };

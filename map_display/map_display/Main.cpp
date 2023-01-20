@@ -45,6 +45,7 @@ void Main()
 		//display2.toReal(RectF{ 0,0, 700, 1000 }).draw(ColorF{ 0.0, 0.5, 1.0, 0.5 });
 		//
 		//
+		menu.Update();
 		menu.MenuFrameDraw();
 		menu.MenuUIDraw();
 	}

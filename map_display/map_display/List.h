@@ -11,7 +11,7 @@ private:
 	Vec2  OneListSize = { 0,0 };
 	Vec2 Sidebutton[2];
 	Vec2 pos;
-	Optional<FilePath> path;
+	Optional<FilePath> File_path;
 	const Texture Arrow_up{ 0xf151_icon, 100 };
 	const Texture Arrow_down{ 0xf150_icon, 100 };
 	const Texture Download{ 0xf07c_icon,100 };
@@ -21,7 +21,7 @@ private:
 		,ListImportFrame.h,ListImportFrame.h,3 };
 	CSV csv;
 	const Font List_Font{ 17 };
-	 String windowTitle;
+	String windowTitle;
 public:
 	/// @brief List.hのコンストラクタ
 	/// @param resizer 表示画面
@@ -31,7 +31,7 @@ public:
 	/// @param items 表示するリストファイルデータ
 	/// @param bar_size 横のサイドバーの幅
 	List(Screen_Resizer& resizer, RoundRect ListImportFrame, RectF List_Frame, unsigned int List_Volume, double bar_size)
-		:resizer(resizer),ListImportFrame(ListImportFrame), List_Frame(List_Frame), List_Volume(List_Volume), bar_size(bar_size) {
+		:resizer(resizer), ListImportFrame(ListImportFrame), List_Frame(List_Frame), List_Volume(List_Volume), bar_size(bar_size) {
 		OneListSize.y = List_Frame.h / List_Volume;
 		OneListSize.x = List_Frame.w / 9.0;
 		Sidebutton[0] = { List_Frame.rightX() - bar_size,List_Frame.y };
@@ -51,21 +51,21 @@ public:
 		Download.resized(resizer.Cal_Size(ListImportButton.h * 0.8))
 			.drawAt(resizer.Cal_Pos(ListImportButton.center()), Palette::Black);
 
-		if (path) {
-			List_Font(FileSystem::FileName(*path))
+		if (File_path) {
+			List_Font(FileSystem::FileName(*File_path))
 				.drawAt(resizer.Cal_Pos({ ListImportFrame.center() }), Palette::Black);
 		}
 		if (resizer.toReal(ListImportButton).leftClicked()) {
-			const auto temp = path;
-			path = Dialog::OpenFile({ FileFilter::CSV() });
+			const auto temp = File_path;
+			File_path = Dialog::OpenFile({ FileFilter::CSV() });
 			//const CSV csv{ U"C:/Users/jlgif/Downloads/robot_move_ver0.0.csv"};
-			if (path) {
-				csv.load(*path);
+			if (File_path) {
+				csv.load(*File_path);
 				if (not csv) // もし読み込みに失敗したら
 					throw Error{ U"Failed to load" };
 			}
 			else {
-				path = temp;
+				File_path = temp;
 			}
 		}
 
@@ -87,7 +87,7 @@ public:
 			//.drawFrame(resizer.Cal_Size(0.5), resizer.Cal_Size(0), Palette::Black);
 			pos.y += OneListSize.y;
 		}
-		pos.y = List_Frame.y;
+		pos.y = List_Frame.y + OneListSize.y;
 
 
 	}
