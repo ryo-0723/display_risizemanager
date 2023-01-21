@@ -320,6 +320,7 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="MenuConstant.h" />
     <ClInclude Include="Meter.h" />
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="Slider.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ScreenStyle.h" />

@@ -10,10 +10,12 @@ private:
 	String pushstring;
 	Color defaultcolor;
 	Color pushcolor;
-	bool Click;
+	bool Click = false;
 public:
 	Button(Screen_Resizer& resizer, RoundRect Frame_rect, String defaultstring, String pushstring)
-		:resizer(resizer), Frame_rect(Frame_rect) {}
+		:resizer(resizer), Frame_rect(Frame_rect)
+	,defaultstring(defaultstring),pushstring(pushstring)
+	,defaultcolor(defaultcolor),pushcolor(pushcolor){}
 	/// @brief ボタンの判定関数
 	void Update() {
 		if (resizer.toReal(Frame_rect).mouseOver() && resizer.toReal(Frame_rect).leftPressed())
@@ -24,10 +26,10 @@ public:
 	/// @brief ボタンの描画関数
 	void draw() {
 		if (Click)
-			resizer.toReal(Frame_rect).movedBy(resizer.Cal_Size({ 5,5 }))
+			resizer.toReal(Frame_rect).movedBy(resizer.Cal_Size({ 3,3 }))
 			.draw();
 		else
-			resizer.toReal(Frame_rect).drawShadow(resizer.Cal_Size({ 5,5 }), 0, 0).draw();
+			resizer.toReal(Frame_rect).drawShadow(resizer.Cal_Size({ 3,3 }), 0, 0).draw();
 	}
 	/// @brief ボタンの判定を返す関数
 	/// @return 0=クリックされていない　1=クリックされている

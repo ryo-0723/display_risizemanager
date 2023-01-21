@@ -41,12 +41,14 @@ void Main()
 		display2.Resize_Update(right);
 
 		//ClearPrint();
-		//display1.toReal(RectF{ 0,0, 4000, 7500 }).draw(ColorF{ 0, 1.0, 0, 0.5 });
+		display1.toReal(RectF{ 0,0, 4000, 7500 }).draw(ColorF{ 0, 1.0, 0, 0.5 });
 		//display2.toReal(RectF{ 0,0, 700, 1000 }).draw(ColorF{ 0.0, 0.5, 1.0, 0.5 });
 		//
 		//
 		menu.Update();
 		menu.MenuFrameDraw();
 		menu.MenuUIDraw();
+		field.draw(menu.slider_jadge());
+		
 	}
 }

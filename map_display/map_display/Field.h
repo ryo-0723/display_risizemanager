@@ -9,18 +9,27 @@ private:
 
 	int offset2_x = 290;
 	int offset2_y = 250;
-
-	Vec2  FieldPos() {
-
-	}
+	RectF RedField_Frame = { 0 + offset_x,0 + offset_y,3424,6924 };
+	RectF BlueField_Frame = { 0 + offset2_x,0 + offset2_y,3424,6924 };
 
 public:
 	Field(Screen_Resizer& resizer) :resizer(resizer) {}
 
+	Vec2 RedField_Pos() {
+		
+	}
+
+	Vec2 BlueField_Pos() {
+
+	}
+
+
 	void FieldWoodDraw() {
 		//Print << resizer.toReal(RectF{ 0,0,1000,1000 }).draw();
 		//赤ゾーンフィールド
-		resizer.toReal(RectF{ 0 + offset_x,0 + offset_y,3424,6924 }).rounded(1).drawFrame(0, resizer.Cal_Size(38), Palette::Burlywood);
+		resizer.toReal(RedField_Frame).rounded(1)
+			//.draw()
+			.drawFrame(0, resizer.Cal_Size(38), Palette::Burlywood);
 		resizer.toReal(RectF{ 0 + offset_x,800 + offset_y,800,38 }).draw(Palette::Burlywood);
 		resizer.toReal(RectF{ 2624 + offset_x,800 + offset_y,800,38 }).draw(Palette::Burlywood);
 		//ロボットのスタートゾーン横の長い棒
@@ -69,7 +78,7 @@ public:
 	void BlueFieldWoodDraw() {
 		//Print << resizer.toReal(RectF{ 0,0,1000,1000 }).draw();
 		//青ゾーンフィールド
-		resizer.toReal(RectF{ 0 + offset2_x,0 + offset2_y,3424,6924 }).rounded(1).drawFrame(0, resizer.Cal_Size(38), Palette::Burlywood);
+		resizer.toReal(BlueField_Frame).rounded(1).drawFrame(0, resizer.Cal_Size(38), Palette::Burlywood);
 		resizer.toReal(RectF{ 0 + offset2_x,800 + offset2_y,800,38 }).draw(Palette::Burlywood);
 		resizer.toReal(RectF{ 2624 + offset2_x,800 + offset2_y,800,38 }).draw(Palette::Burlywood);
 		//ロボットのスタートゾーン横の長い棒
@@ -114,17 +123,18 @@ public:
 		resizer.toReal(RectF{ 1212 + offset2_x,5924 + offset2_y,1000,1000 }).drawFrame(resizer.Cal_Size(30), 0, Palette::Blue);
 		resizer.toReal(RectF{ 1512 + offset2_x,6224 + offset2_y,700,700 }).drawFrame(resizer.Cal_Size(30), 0, Palette::Blue);
 	}
-
+	/// @brief フィールドを描画する関数
+	/// @param r=0 赤フィールド　r=1　青フィールド
 	void draw(bool r) {
 		if (r) {
-			FieldWoodDraw();
-			FieldLineDraw();
-			FieldRedDraw();
-		}
-		else {
 			BlueFieldWoodDraw();
 			BlueFieldLineDraw();
 			FieldBlueDraw();
+		}
+		else {
+			FieldWoodDraw();
+			FieldLineDraw();
+			FieldRedDraw();
 		}
 	}
 };
