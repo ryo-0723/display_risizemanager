@@ -82,7 +82,6 @@ public:
 	}
 
 	void List_draw() {
-
 		/*枠の描画*/
 		Arrow_up.resized(resizer.Cal_Size(bar_size)).draw(resizer.Cal_Pos({ Sidebutton[0].x, Sidebutton[0].y }), Palette::Black);
 		Arrow_down.resized(resizer.Cal_Size(bar_size)).draw(resizer.Cal_Pos({ Sidebutton[1].x, Sidebutton[1].y }), Palette::Black);
@@ -104,7 +103,8 @@ public:
 		pos.x = List_Frame.pos.x;
 		/**/
 
-		for (int i = 0; i < (List_Volume < csv.rows() ? List_Volume : csv.rows()); i++) {
+		for (int i = 0; i < (List_Volume - 1 < csv.rows() ? List_Volume - 1 : csv.rows()); i++) {
+			/*-1は項目の文字を表示したものを引くためのやつ*/
 			resizer.toReal(RectF{ List_Frame.x,pos.y,List_Frame.w - bar_size ,OneListSize.y });
 			if (not csv.isEmpty())
 				for (int a = 0; a < csv.columns(4); a++) {
